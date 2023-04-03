@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUVs, Sedans, Sports Cars, Hybrids, EVs & Luxury Cars | Kia</title>
+    <link rel="stylesheet" href="../day09/fontawesome-free-6.3.0-web/css/all.css">
+    <style>
+        @font-face {
+            font-family: "KiaBold";
+            src: url(../font_folder/KiaSignatureBold.woff);
+        }
+
+        @font-face {
+            font-family: "KiaLight";
+            src: url(../font_folder/KiaSignatureLight.woff);
+        }
+
+        @font-face {
+            font-family: "KiaRegular";
+            src: url(../font_folder/KiaSignatureRegular.woff);
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            width: 100%;
+            font-family: "KiaRegular";
+            color: white;
+            overflow-x: hidden;
+        }
+
+        #nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #05141f;
+            display: flex;
+        }
+
+        #kiaLogo {
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 32px 0 25px;
+            vertical-align: baseline;
+        }
+
+        #kiaLogo img {
+            width: 62px;
+            height: 60px;
+        }
+
+        #vehiclesList:not(#cars):not(.shoppingBox):not(.innovationBox) {
+            width: 512px;
+            height: auto;
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: .75em;
+            vertical-align: baseline;
+        }
+
+        #vehiclesList li {
+            display: flex;
+            align-self: center;
+        }
+
+        #vehiclesList li i {
+            margin-left: 10px;
+            font-size: 1.5em;
+        }
+
+        .vehiclesTable {
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+        .underline:hover {
+            border-bottom: 1.5px solid white;
+        }
+
+        .underline:first-child:hover #vehiclesBox {
+            display: block;
+            justify-content: left;
+            align-self: center;
+        }
+
+        .underline:first-child:hover #cars {
+            display: block;
+
+        }
+
+        #vehiclesBox {
+            display: none;
+            width: 100%;
+            height: 60px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: #33404a;
+            color: white;
+            list-style: none;
+            padding: 5px 0 5px 0;
+            font-size: 1em;
+            vertical-align: center;
+        }
+
+        #cars {
+            display: none;
+            width: 100vw;
+            height: 80vh;
+            position: absolute;
+            top: 120px;
+            left: 0;
+            background-color: white;
+        }
+
+        #cars img {
+            width: 205px;
+            height: 118px;
+            margin: 30px;
+        }
+
+        .underline:nth-child(2):hover .shoppingBox {
+            display: block;
+        }
+
+        .shoppingBox {
+            display: none;
+            width: 100vw;
+            height: 80vh;
+            position: absolute;
+            top: 61px;
+            left: 0px;
+            background-color: white;
+        }
+
+        .shoppingBox i {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+        }
+
+        .underline:nth-child(4):hover .innovationBox {
+            display: block;
+
+        }
+
+        .innovationBox {
+            display: none;
+            width: 100vw;
+            height: 50vh;
+            position: absolute;
+            top: 61px;
+            left: 0px;
+            background-color: white;
+        }
+
+        .innovationBox img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #findList {
+            width: 331px;
+            list-style: none;
+            margin: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            vertical-align: baseline;
+        }
+
+        #findList li:not(:first-child) {
+            text-decoration: underline;
+            margin-right: 20px;
+        }
+
+        #findList li {
+            font-size: .60em;
+            display: flex;
+            align-self: center;
+        }
+
+        #findList li:first-child {
+            font-size: .7em;
+            margin-right: 10px;
+        }
+
+        #search {
+            background-color: #323a43;
+            width: 150px;
+            height: 60px;
+            display: flex;
+            justify-content: space-evenly;
+            vertical-align: baseline;
+            font-size: .75em;
+        }
+
+        #search span {
+            display: flex;
+            align-self: center;
+        }
+
+        #search i {
+            display: flex;
+            align-self: center;
+        }
+
+        #main {
+            margin: 0;
+            width: 100%;
+            height: 460px;
+            background-image: url(../day16/kia_homepage_JDP-mass-market_dynamic_hero_2_L.jpeg);
+            background-size: cover;
+            background-position-y: -128px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #main h1 {
+            font-family: "KiaBold";
+            font-size: 3em;
+            width: 996px;
+            height: 216px;
+            margin: 76px 0 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+        }
+
+        #main h1 p {
+            width: 996px;
+            height: 54px;
+            margin: 0;
+            /* margin: 13px 0 28px; */
+        }
+
+        #links {
+            width: 100%;
+            height: 131px;
+            display: flex;
+            flex-direction: row;
+            margin-left: 58px
+        }
+
+        #links:last-child {
+            display: flex;
+        }
+
+        #links>.learn:hover {
+            background-color: transparent;
+            color: white;
+        }
+
+        #links>.explore:hover {
+            background-color: white;
+            color: #05141f;
+        }
+
+        #main a {
+            width: 80px;
+            height: 50px;
+            text-decoration: none;
+            border: 1px solid white;
+            background-color: white;
+            color: #05141f;
+            margin-right: 7px;
+            padding-left: 41px;
+            padding-right: 41px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #main a+a {
+            width: 130px;
+            background-color: transparent;
+            color: white;
+        }
+
+        #disclaimers {
+            width: 600px;
+            text-align: right;
+            font-size: .5em;
+            margin-top: 108px;
+            display: block;
+            text-decoration: underline;
+            color: white;
+        }
+
+        #disclaimers:hover .disclaimersBox {
+            display: block;
+        }
+
+        .disclaimersBox {
+            display: none;
+            width: 200px;
+            height: 65px;
+            background-color: white;
+            margin-left: 80%;
+            color: #05141f;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #threeVehicles {
+            width: 100%;
+            padding-top: 50px;
+            background-color: #05141f;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            vertical-align: baseline;
+        }
+
+        #threeVehicles>div {
+            width: 996px;
+            height: 417px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .EV6,
+        .niro,
+        .sportage {
+            width: 313px;
+            height: 417px;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .EV6:hover,
+        .niro:hover,
+        .sportage:hover {
+            width: 344px;
+            height: 459px;
+        }
+
+        .EV6 {
+            background-image: url(../day16/kia_ev6_card-tout.jpg);
+        }
+
+        .niro {
+            background-image: url(../day16/kia_card-tout_niro-hev_1.jpg);
+        }
+
+        .sportage {
+            background-image: url(../day16/kia_card-tout_sportage-23.jpg);
+        }
+
+        .EV6>p,
+        .niro>p,
+        .sportage>p {
+            font-size: .5em;
+            letter-spacing: 1px;
+            margin-left: 25px;
+        }
+
+        h3 {
+            margin-top: 0;
+            margin-left: 25px;
+        }
+
+        .EV6>a,
+        .niro>a,
+        .sportage>a {
+            width: fit-content;
+            color: white;
+            border: 1px solid white;
+            text-decoration: none;
+            padding: 10px;
+            font-size: .8em;
+            font-family: "KiaBold";
+            margin-left: 25px;
+            margin-bottom: 25px;
+        }
+
+        .EV6>a:hover,
+        .niro>a:hover,
+        .sportage>a:hover {
+            background-color: white;
+            color: #05141f;
+        }
+
+        #end {
+            width: 100%;
+            height: 425px;
+            margin: 0;
+            background-image: url(../day16/kia_homepage_meet-the-family_background_suv-cuv-mpv-v8_L.jpeg);
+            background-size: cover;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        h2 {
+            margin-top: 40px auto 40px auto;
+            font-size: 2.5em;
+        }
+
+        #reallyEnd {
+            width: 100%;
+            height: 425px;
+            background-color: white;
+        }
+
+        #reallyEnd img {
+            position: absolute;
+            bottom: -924px;
+            margin-left: 260px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav">
+        <div id="kiaLogo"><img src="../day16/kia_logo_white.svg" alt="KIA"></div>
+        <ul id="vehiclesList">
+            <li class="underline" class="vehicles">Vehicles<i class="fa-solid fa-angle-down"
+                    style="color: #ffffff;"></i>
+                <div id="vehiclesBox">
+                    <table class="vehiclesTable">
+                        <tr>
+                            <td>&nbsp;&nbsp;SUV / CUV / MPV&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;Hybrid / Electric&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;Sedan&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;Upcoming&nbsp;&nbsp;</td>
+                            <td>&nbsp;&nbsp;Show All<i class="fa-solid fa-angle-right"
+                                    style="color: #ffffff;"></i>&nbsp;&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="cars">
+                    <h1 style="color: #05141f; font-family: KiaBold; margin: 40px; font-size: 2.5em;">SUV / CUV / MVP
+                    </h1>
+                    <img src="../day16/cars/first1.png" alt="blueKia">
+                    <img src="../day16/cars/second1.png" alt="goldKia">
+                    <img src="../day16/cars/third1.png" alt="greenKia">
+                    <img src="../day16/cars/fourth1.png" alt="anothergreenKia">
+                    <img src="../day16/cars/fifth1.png" alt="navyKia">
+                    <img src="../day16/cars/sixth1.png" alt="anothernavyKia">
+                </div>
+            </li>
+            <li class="underline" class="shopping">Shopping Assist<i class="fa-solid fa-angle-down"
+                    style="color: #ffffff;"></i>
+                <div class="shoppingBox">
+                    <i class="fa-solid fa-car" style="color:#05141f; margin-top: 200px; margin-left: 350px;"></i>
+                    <i class="fa-solid fa-calculator" style="color:#05141f"></i>
+                    <i class="fa-solid fa-key" style="color:#05141f"></i>
+                    <i class="fa-solid fa-pencil" style="color:#05141f"></i><br>
+                    <i class="fa-solid fa-gear" style="color:#05141f; margin-left: 350px;"></i>
+                    <i class="fa-solid fa-money-check-dollar" style="color:#05141f"></i>
+                    <i class="fa-solid fa-file-invoice-dollar" style="color:#05141f"></i>
+                    <i class="fa-solid fa-map" style="color:#05141f"></i>
+                </div>
+            </li>
+            <li class="underline">Inventory</li>
+            <li class="underline" class="innovation">Kia Innovation<i class="fa-solid fa-angle-down"
+                    style="color: #ffffff;"></i>
+                <div class="innovationBox">
+                    <img src="../day16/download.png" alt="electric" style="margin: 100px 100px 0 200px;">
+                    <img src="../day16/download (1).png" alt="safety" style="margin-right: 100px;">
+                    <img src="../day16/download (2).png" alt="connectivity" style="margin-right: 100px">
+                    <img src="../day16/download (3).png" alt="sustainability">
+                </div>
+            </li>
+            <li class="underline" class="owners">Owners<i class="fa-solid fa-arrow-right-from-bracket"
+                    style="color: #ffffff; margin-left: 4px; font-size: .6em; vertical-align: super;"></i></li>
+        </ul>
+        <ul id="findList">
+            <li><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i>
+            </li>
+            <li>Zip Code</li>
+            <li>Find a Dealer</li>
+        </ul>
+        <div id="search"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i><span>Search</span></div>
+    </div>
+    <div id="main">
+        <h1>
+            <p>Most</p>
+            <p>Dependable</p>
+            <p>Mass Market</p>
+            <p>Brand by J.D. Power</p>
+        </h1>
+        <div id="links">
+            <a class="learn" href="https://www.kia.com/us/en/why-kia">Learn More</a>
+            <a class="explore" href="https://www.kia.com/us/en/vehicles">Explore Vehicles</a>
+            <div id="disclaimers">Disclaimers
+                <div class="disclaimersBox">Please<br>Drink🍻<br>Responsibly</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="threeVehicles">
+        <div>
+            <div class="EV6">
+                <p>BEST OF THE BEST</p>
+                <h3>2023 North American Utility<br>Vehicle of the Year</h3>
+                <a href="https://www.kia.com/us/en/ev6">Meet EV6</a>
+            </div>
+            <div class="niro">
+                <p>HYBRID REIMAGINED</p>
+                <h3>2023 Niro Hybrid</h3>
+                <a href="https://www.kia.com/us/en/niro">Meet Niro</a>
+            </div>
+            <div class="sportage">
+                <p>BUILT FOR EXPLORATION</p>
+                <h3>2023 Sportage</h3>
+                <a href="https://www.kia.com/us/en/sportage">Meet Sportage</a>
+            </div>
+        </div>
+    </div>
+    <div id="end">
+        <h2>Discover the New Kia</h2>
+
+    </div>
+    <div id="reallyEnd">
+        <img src="../day16/thisone.webp" alt="bluecar">
+    </div>
+</body>
+
+</html>
